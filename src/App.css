@@ -190,21 +190,20 @@ button:disabled {
 }
 
 .level-btn {
-  .level-btn {
   padding: 15px;
   font-size: 1.1rem;
   font-weight: bold;
   border-radius: 15px;
-  transition: transform 0.2s, box-shadow 0.2s; 
+  transition: transform 0.2s, box-shadow 0.2s;
   border: none;
   color: white;
   cursor: pointer;
-  width: 100%; 
+  width: 100%;
 }
 
 .level-btn:hover {
-  transform: translateY(-3px); 
-}
+  transform: translateY(-3px);
+} /* <--- JANGAN LUPA KURUNG TUTUP INI */
 
 /* Warna-warni tombol */
 .level-btn.easy { background: #2ecc71; box-shadow: 0 4px #27ae60; }
