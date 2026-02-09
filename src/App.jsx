@@ -172,11 +172,11 @@ function App() {
 
     setLoading(true);
 
-    // Tahan 1.5s
+    // Tahan 1s
     setTimeout(() => {
       setLoading(false);
       setQuizState('levelSelection');
-    }, 1500);
+    }, 1000);
 
   };
 

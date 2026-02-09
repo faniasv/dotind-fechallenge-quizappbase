@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LevelSelection = ({ onSelectLevel, username }) => {
+const LevelSelection = ({ onSelectLevel, username, loading }) => {
     return (
         <div className="card">
             <h1>Select Difficulty</h1>

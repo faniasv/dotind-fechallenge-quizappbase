@@ -205,6 +205,14 @@ button:disabled {
   transform: translateY(-3px);
 } /* <--- JANGAN LUPA KURUNG TUTUP INI */
 
+.level-btn:disabled {
+  background: #b2bec3 !important; 
+  box-shadow: none !important;   
+  cursor: not-allowed;           
+  transform: none !important;     
+  color: #636e72 !important;      /
+}
+
 /* Warna-warni tombol */
 .level-btn.easy { background: #2ecc71; box-shadow: 0 4px #27ae60; }
 .level-btn.medium { background: #f1c40f; box-shadow: 0 4px #f39c12; color: #2d3436; }
