@@ -41,12 +41,12 @@ const Result = ({ username, score, correctCount, wrongCount, handleRestart }) =>
 
   // --- Fungsi utk ngasih confetti emoji (reward player) ---
   const renderConfetti = () => {
-    return [...Array(30)].map((_, i) => (
+    return [...Array(50)].map((_, i) => (
       <div 
         key={i}
         className="confetti-piece"
         style={{
-          left: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}vw`,
           animation: `fall ${Math.random() * 3 + 2}s linear infinite`,
           animationDelay: `${Math.random() * 5}s`,
           fontSize: `${Math.random() * 20 + 20}px`
