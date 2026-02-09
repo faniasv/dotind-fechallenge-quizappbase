@@ -10,9 +10,15 @@ const Login = ({ username, setUsername, handleStart, loading }) => {
         placeholder="Type your name here..."
         value={username}
         onChange={(e) => setUsername(e.target.value)} 
+
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !loading) {
+             handleStart();
+          }
+        }}
       />
       <button onClick={handleStart} disabled={loading}>
-        {loading ? "Hang tight, Jarvis is fetching the questions..." : "Start Quiz"}
+        {loading ? "Hang tight, Jarvis is getting things ready..." : "Start Quiz"}
       </button>
     </div>
   );

@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 
 const Result = ({ username, score, correctCount, wrongCount, handleRestart }) => {
 
-  // Var utk cek skor memenuhi syarat (score >= 75)
-  const isPassed = score >= 75;
+  // Var utk cek skor memenuhi syarat (score >= 55)
+  const isPassed = score >= 55;
 
   // Var state utk style posisi tombol "Coba lagi"
   // Awalnya diem, nanti bisa pindah-pindah wkwk
@@ -30,9 +30,9 @@ const Result = ({ username, score, correctCount, wrongCount, handleRestart }) =>
         top: `${randomTop}px`,
         left: `${randomLeft}px`,
         width: 'auto',      
-        minWidth: '150px',  
-        padding: '15px 30px',
-        transition: 'all 0.3s ease-out', // Biar animasinya mulus 
+        minWidth: '150x',  
+        padding: '10px 20px',
+        transition: 'all 1.5s ease-out', // Biar animasinya mulus 
         transform: 'translate(-50%, -50%)', // Titik tenganya pas di kursor
         zIndex: 9999 // Biar tombol di atasnya teks 
       });

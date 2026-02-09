@@ -139,7 +139,7 @@ function App() {
       setCorrectCount(correctCount + 1);
 
     } else {
-      setScore(score - 5);
+      setScore(score - 3);
       setWrongCount(wrongCount + 1);
     }
 
@@ -166,6 +166,20 @@ function App() {
     localStorage.removeItem('quiz-save-v1');
   };
 
+  // 6. Fungsi utk handle loading biar user ga "eh kok lama" terus tb tb JEDARRR
+  const handleLoginTransition = () => {
+    if (!username) return alert ('Please enter your name!');
+
+    setLoading(true);
+
+    // Tahan 1.5s
+    setTimeout(() => {
+      setLoading(false);
+      setQuizState('levelSelection');
+    }, 1500);
+
+  };
+
   // --- BAGIAN TAMPILAN (UI) ---
   return (
     <div className="app">
@@ -175,7 +189,7 @@ function App() {
         <Login 
           username={username} 
           setUsername={setUsername} 
-          handleStart={handleLoginSuccess} 
+          handleStart={handleLoginTransition}
           loading={loading} 
         />
       )}
@@ -185,6 +199,7 @@ function App() {
         <LevelSelection 
           username={username}
           onSelectLevel={handleLevelSelect} 
+          loading={loading}
         />
       )}
 
