@@ -29,6 +29,9 @@ const Result = ({ username, score, correctCount, wrongCount, handleRestart }) =>
         position: 'fixed', // Biar bisa dipindah koordinatnya
         top: `${randomTop}px`,
         left: `${randomLeft}px`,
+        width: 'auto',      
+        minWidth: '150px',  
+        padding: '15px 30px',
         transition: 'all 0.3s ease-out', // Biar animasinya mulus 
         transform: 'translate(-50%, -50%)', // Titik tenganya pas di kursor
         zIndex: 9999 // Biar tombol di atasnya teks 

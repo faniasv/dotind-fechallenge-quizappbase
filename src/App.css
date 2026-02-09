@@ -180,3 +180,33 @@ button:disabled {
   font-weight: 500;
   margin: 4px 0;
 }
+
+/* 11. Level Selection */
+.level-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.level-btn {
+  .level-btn {
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 15px;
+  transition: transform 0.2s, box-shadow 0.2s; 
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 100%; 
+}
+
+.level-btn:hover {
+  transform: translateY(-3px); 
+}
+
+/* Warna-warni tombol */
+.level-btn.easy { background: #2ecc71; box-shadow: 0 4px #27ae60; }
+.level-btn.medium { background: #f1c40f; box-shadow: 0 4px #f39c12; color: #2d3436; }
+.level-btn.hard { background: #e74c3c; box-shadow: 0 4px #c0392b; }

@@ -4,8 +4,9 @@ import './App.css'
 
 // Import Tampilan dari components
 import Login from './components/Login.jsx'
+import LevelSelection from './components/LevelSelection'
 import Quiz from './components/Quiz.jsx'
-import Result from './components/Result.jsx'
+import Result from './components/Result'
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
   // 4. State utk menyimpan Data Timer
   const [timeLeft, setTimeLeft] = useState(60);
 
+  // 5. State utk memilih Level
+  const [difficulty, setDifficulty] = useState('easy');
+
   // --- BAGIAN EFFECT ---
   
   // 1. Utk Resume (Krit H)
@@ -37,6 +41,7 @@ function App() {
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setUsername(parsed.username);
+      setDifficulty(parsed.difficulty);
       setQuestions(parsed.questions);
       setCurrentIndex(parsed.currentIndex);
       setScore(parsed.score);
@@ -52,6 +57,7 @@ function App() {
     if (quizState === 'playing') {
       const dataToSave = {
         username,
+        difficulty,
         questions,
         currentIndex,
         score,
@@ -81,11 +87,12 @@ function App() {
   // --- BAGIAN FUNGSI (logic) ---
   
   // 1. Fungsi utk Mengambil Soal dari API (Krit B)
-  const fetchQuestions = async () => {
+  const fetchQuestions = async (selectedLevel) => {
     setLoading(true);
     try {
-      // Req 10 soal pilihan ganda
-      const res = await axios.get('https://opentdb.com/api.php?amount=10&type=multiple');
+      // Req 10 soal pilihan ganda sesuai levelnyah
+      const url = `https://opentdb.com/api.php?amount=10&type=multiple&difficulty=${selectedLevel}`;
+      const res = await axios.get(url);
 
       // Data API utk memisahkan benar dan salah. Perlu digabung dan acak 
       const formattedQuestions = res.data.results.map((q) => ({
@@ -104,18 +111,25 @@ function App() {
       setWrongCount(0);
       setTimeLeft(60);
     } catch (err) {
-      alert ("Gagal mengambil soal! Cek koneksi internet.")
+      alert ("Failed to fect questions. Check internet question.");
+      setQuizState('levelSelection');
     }
     setLoading(false);
   };
 
   // 2. Fungsi Start di Login
   const handleStart = () => {
-    if(!username) return alert('Isi nama dulu dong!');
+    if(!username) return alert('Please enter your name!');
     fetchQuestions(); // Panggil fungsi utk ambil soal
   };
 
-  // 3. Funngsi utk Cek Jawaban 
+  // 3. Fungsi utk Handle Level
+  const handleLevelSelect = (level) => {
+    setDifficulty(level); // Simpan ke state
+    fetchQuestions(level); // Panggil API sesuai level
+  };
+
+  // 4. Fungsi utk Cek Jawaban 
   const handleAnswer = (chosenAnswer) => {
     const currentQ = questions[currentIndex];
 
@@ -138,7 +152,7 @@ function App() {
     }
   };
 
-  // 4. Fungsi utk Restart 
+  // 5. Fungsi utk Restart 
   const handleRestart = () => {
     // 1. Balik ke 'login'
     setQuizState('login');
@@ -161,8 +175,16 @@ function App() {
         <Login 
           username={username} 
           setUsername={setUsername} 
-          handleStart={handleStart} 
+          handleStart={handleLoginSuccess} 
           loading={loading} 
+        />
+      )}
+
+      {/* Level Selection  */}
+      {quizState === 'levelSelection' && (
+        <LevelSelection 
+          username={username}
+          onSelectLevel={handleLevelSelect} 
         />
       )}
 
