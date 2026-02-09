@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 
 const Result = ({ username, score, correctCount, wrongCount, handleRestart }) => {
 
-  // Var utk cek skor memenuhi syarat (score >= 55)
-  const isPassed = score >= 55;
+  // Var utk cek skor memenuhi syarat (score >= 10)
+  const isPassed = score >= 5;
 
   // Var state utk style posisi tombol "Coba lagi"
   // Awalnya diem, nanti bisa pindah-pindah wkwk

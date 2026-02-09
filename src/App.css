@@ -203,17 +203,38 @@ button:disabled {
 
 .level-btn:hover {
   transform: translateY(-3px);
-} /* <--- JANGAN LUPA KURUNG TUTUP INI */
+} 
 
 .level-btn:disabled {
-  background: #b2bec3 !important; 
-  box-shadow: none !important;   
-  cursor: not-allowed;           
-  transform: none !important;     
-  color: #636e72 !important;      /
+  background-color: #b2bec3 !important; 
+  color: #636e72 !important;            
+  border: 2px solid #dfe6e9;            
+  box-shadow: none !important;          
+  cursor: wait;                         
+  transform: none !important;
+}
+
+.level-btn.keep-color:disabled {
+  opacity: 1 !important;        
+  cursor: not-allowed;          
+  color: white !important;     
+  border: none;   
 }
 
 /* Warna-warni tombol */
 .level-btn.easy { background: #2ecc71; box-shadow: 0 4px #27ae60; }
 .level-btn.medium { background: #f1c40f; box-shadow: 0 4px #f39c12; color: #2d3436; }
 .level-btn.hard { background: #e74c3c; box-shadow: 0 4px #c0392b; }
+
+.level-btn.easy.keep-color:disabled { 
+  background-color: #2ecc71 !important; 
+}
+
+.level-btn.medium.keep-color:disabled { 
+  background-color: #f1c40f !important; 
+  color: #2d3436 !important; 
+}
+
+.level-btn.hard.keep-color:disabled { 
+  background-color: #e74c3c !important; 
+}

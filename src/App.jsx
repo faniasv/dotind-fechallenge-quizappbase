@@ -200,6 +200,7 @@ function App() {
           username={username}
           onSelectLevel={handleLevelSelect} 
           loading={loading}
+          currentLevel={difficulty}
         />
       )}
 
