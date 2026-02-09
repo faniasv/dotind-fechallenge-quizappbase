@@ -1,0 +1,182 @@
+/* 1. Import Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* 2. Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff9c4; 
+  color: #2d3436; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* 3. Container Utama */
+.app {
+  width: 100%;
+  max-width: 420px; 
+}
+
+/* 4. Card Putih (Wadah Utama) */
+.card {
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); 
+  text-align: center;
+  border: 4px solid #fff; 
+  position: relative; /* Biar elemen lainnya tetap di sini */
+  overflow: hidden;   /* Kalo tombol lompat kejauhan, dia kepotong */
+}
+
+/* 5. Header Info (Player Name, Timer) */
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #b2bec3; /* Abu-abu muda */
+}
+
+/* Style teks timer biar menonjol */
+.header-info span b {
+  color: #2d3436;
+}
+
+/* 6. Judul & Pertanyaan */
+h1 {
+  color: #6c5ce7; 
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: #2d3436;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 20px 0 30px 0;
+  text-align: left; 
+}
+
+p {
+  color: #636e72;
+  margin-bottom: 20px;
+}
+
+/* 7. Input Field (Login) */
+input[type="text"] {
+  width: 100%;
+  padding: 18px;
+  border-radius: 20px;
+  border: 2px solid #dfe6e9; 
+  background: #f5f6fa;
+  color: #2d3436;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: center;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #ff9f43; 
+  background: #fff;
+}
+
+/* 8. Tombol Pilihan Jawaban (Orange Buttons) */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.option-btn {
+  background-color: #ff9f43; 
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 15px; 
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  text-align: center;
+  box-shadow: 0 4px 0 #e58e26; 
+}
+
+.option-btn:hover {
+  background-color: #ffaf40;
+  transform: translateY(-2px); 
+}
+
+.option-btn:active {
+  transform: translateY(2px); 
+  box-shadow: none;
+}
+
+/* 9. Tombol Utama (Mulai / Main Lagi) */
+button {
+  width: 100%;
+  padding: 18px;
+  border-radius: 25px;
+  border: none;
+  background-color: #6c5ce7; 
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 0 #5f27cd; 
+  transition: 0.2s;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+button:disabled {
+  background-color: #b2bec3;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* 10. Result Screen */
+.score-board {
+  background: #fff3cd; 
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px 0;
+  border: 2px dashed #ff9f43; 
+}
+
+.score-board h2 {
+  font-size: 2rem;
+  color: #ff9f43;
+  margin: 0;
+  text-align: center;
+}
+
+.score-board p {
+  color: #2d3436;
+  font-weight: 500;
+  margin: 4px 0;
+}
