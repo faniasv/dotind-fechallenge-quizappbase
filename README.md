@@ -1,16 +1,51 @@
-# React + Vite
+# 🧠 Quiz One-Two-Three
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, gamified trivia application built with **React.js** and **Vite**. This project challenges users with dynamic questions fetched from the [OpenTDB API](https://opentdb.com/), featuring persistent game states, a smart difficulty system, and playful DOM manipulations.
 
-Currently, two official plugins are available:
+🚀 **Live Demo:** [[https://quizappbase-faniasv.vercel.app/]]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## React Compiler
+### 1. 🎮 Dynamic Gameplay Loop
+- **Smart Difficulty Selection:** Users can choose between **Easy**, **Medium**, and **Hard**. The UI adapts to the selection with distinct color coding (Green/Yellow/Red).
+- **Timer System:** A 60-second countdown adds pressure. The game auto-submits when time runs out.
+- **Scoring Logic:** Reward system (+10 points) for correct answers and penalties (-5 points) for wrong ones.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. 💾 Smart Resume (State Persistence)
+- **Auto-Save:** Uses `localStorage` to save the user's progress (current question, score, timer) in real-time.
+- **Seamless Resume:** If the user refreshes the page or closes the tab, they can pick up exactly where they left off without losing progress.
 
-## Expanding the ESLint configuration
+### 3. 🪄 The "Chasing Button" (Playful UX)
+- **Interactive Penalty:** If a user fails the quiz (score < 75), the "Try Again" button becomes elusive and actively runs away from the cursor using **DOM manipulation** and coordinate randomization.
+- **Responsive Logic:** The button calculates the window boundaries to ensure it never disappears off-screen.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 4. 💅 Micro-Interactions & Feedback
+- **Cinematic Loading:** "Jarvis" style loading messages with simulated delays for a smoother user experience.
+- **Visual Feedback:** - Buttons indicate **"Preparing..."** states when fetching data.
+    - Non-selected buttons become transparent/muted while loading, guiding user focus.
+- **Celebration Mode:** A custom CSS-based **Confetti Animation** triggers upon passing the quiz (Score ≥ 75).
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** React.js (Vite)
+- **Styling:** CSS3 (Custom Animations `@keyframes`, Grid/Flexbox, Responsive Design)
+- **API:** Open Trivia DB (Axios)
+- **State Management:** React `useState`, `useEffect`
+- **Deployment:** Vercel
+
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+├── components/
+│   ├── LevelSelection.jsx  # Difficulty selection with dynamic loading states & opacity logic
+│   ├── Login.jsx           # User entry point with "Enter" key support & fake loading
+│   ├── Quiz.jsx            # Main game display & question rendering
+│   └── Result.jsx          # Score board, chasing button logic, & confetti animation
+├── App.jsx                 # Main Game Logic, Routing State, & LocalStorage handler
+├── App.css                 # Global Styles & Animations
+└── main.jsx
