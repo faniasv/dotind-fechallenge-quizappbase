@@ -139,7 +139,7 @@ function App() {
       setCorrectCount(correctCount + 1);
 
     } else {
-      setScore(score - 3);
+      setScore(score - 5);
       setWrongCount(wrongCount + 1);
     }
 
