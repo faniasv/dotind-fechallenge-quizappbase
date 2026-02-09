@@ -2,7 +2,7 @@
 
 An interactive, gamified trivia application built with **React.js** and **Vite**. This project challenges users with dynamic questions fetched from the [OpenTDB API](https://opentdb.com/), featuring persistent game states, a smart difficulty system, and playful DOM manipulations.
 
-🚀 **Live Demo:** [[https://quizappbase-faniasv.vercel.app/]]
+🚀 **Live Demo:** https://quizappbase-faniasv.vercel.app/
 
 ## ✨ Key Features
 
