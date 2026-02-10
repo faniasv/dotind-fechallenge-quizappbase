@@ -110,11 +110,11 @@ export const useQuiz = () => {
     setLoading(false);
   };
 
-  // 2. Fungsi Start di Login
-  const handleStart = () => {
-    if(!username) return alert('Please enter your name!');
-    fetchQuestions(); // Panggil fungsi utk ambil soal
-  };
+  // 2. Fungsi Start di Login (Sudah tergantikan oleh handleLoginTransition)
+  // const handleStart = () => {
+    // if(!username) return alert('Please enter your name!');
+    // fetchQuestions(); // Panggil fungsi utk ambil soal
+  // };
 
   // 3. Fungsi utk Handle Level
   const handleLevelSelect = (level) => {
