@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
+import { GAME_CONFIG } from '../utils/constants';
 
 const Result = ({ username, score, correctCount, wrongCount, handleRestart }) => {
 
   // Var utk cek skor memenuhi syarat (score >= 75)
-  const isPassed = score >= 75;
+  const isPassed = score >= GAME_CONFIG.PASSING_SCORE;
 
   // Var state utk style posisi tombol "Coba lagi"
   // Awalnya diem, nanti bisa pindah-pindah wkwk
@@ -30,7 +31,7 @@ const Result = ({ username, score, correctCount, wrongCount, handleRestart }) =>
         top: `${randomTop}px`,
         left: `${randomLeft}px`,
         width: 'auto',      
-        minWidth: '150x',  
+        minWidth: '150px',  
         padding: '10px 20px',
         transition: 'all 1.5s ease-out', // Biar animasinya mulus 
         transform: 'translate(-50%, -50%)', // Titik tenganya pas di kursor
@@ -41,7 +42,7 @@ const Result = ({ username, score, correctCount, wrongCount, handleRestart }) =>
 
   // --- Fungsi utk ngasih confetti emoji (reward player) ---
   const renderConfetti = () => {
-    return [...Array(50)].map((_, i) => (
+    return [...Array(GAME_CONFIG.CONFETTI_COUNT)].map((_, i) => (
       <div 
         key={i}
         className="confetti-piece"

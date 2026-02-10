@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios' // Library utk request ke server
 import './App.css'
 
+// Import constants dan hooks
+import { GAME_CONFIG, QUIZ_STATES } from './utils/constants';
+
 // Import Tampilan dari components
 import Login from './components/Login.jsx'
 import LevelSelection from './components/LevelSelection'
@@ -14,7 +17,7 @@ function App() {
 
   // 1. State utk mengatur halaman (Scene Management)
   // Nilai nanti bisa diisi: 'login', 'playing', 'result'
-  const [quizState, setQuizState] = useState('login');
+  const [quizState, setQuizState] = useState(QUIZ_STATES.LOGIN);
 
   // 2. State utk menyimpan username
   const [username, setUsername] = useState('');
@@ -28,7 +31,7 @@ function App() {
   const [loading, setLoading] = useState(false); // Status loading saat mengambil data
 
   // 4. State utk menyimpan Data Timer
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(GAME_CONFIG.TIMER_SECONDS);
 
   // 5. State utk memilih Level
   const [difficulty, setDifficulty] = useState('easy');
@@ -91,7 +94,7 @@ function App() {
     setLoading(true);
     try {
       // Req 10 soal pilihan ganda sesuai levelnyah
-      const url = `https://opentdb.com/api.php?amount=10&type=multiple&difficulty=${selectedLevel}`;
+      const url = `https://opentdb.com/api.php?amount=${GAME_CONFIG.TOTAL_QUESTIONS}&type=multiple&difficulty=${selectedLevel}`;
       const res = await axios.get(url);
 
       // Data API utk memisahkan benar dan salah. Perlu digabung dan acak 
@@ -104,15 +107,15 @@ function App() {
       }));
 
       setQuestions(formattedQuestions);
-      setQuizState('playing'); // Pindah scene ke quiz
+      setQuizState(QUIZ_STATES.PLAYING); // Pindah scene ke quiz
       setCurrentIndex(0);
       setScore(0); // Reset skornya
       setCorrectCount(0);
       setWrongCount(0);
-      setTimeLeft(60);
+      setTimeLeft(GAME_CONFIG.TIMER_SECONDS);
     } catch (err) {
       alert ("Failed to fect questions. Check internet question.");
-      setQuizState('levelSelection');
+      setQuizState(QUIZ_STATES.LEVEL_SELECTION);
     }
     setLoading(false);
   };
@@ -135,11 +138,11 @@ function App() {
 
     // Utk cek benar atau salah
     if (chosenAnswer === currentQ.correct_answer) {
-      setScore(score + 10);
+      setScore(score + GAME_CONFIG.POINTS_CORRECT);
       setCorrectCount(correctCount + 1);
 
     } else {
-      setScore(score - 5);
+      setScore(score - GAME_CONFIG.POINTS_WRONG);
       setWrongCount(wrongCount + 1);
     }
 
@@ -147,7 +150,7 @@ function App() {
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      setQuizState('result'); // Game Over -> ke result
+      setQuizState(QUIZ_STATES.RESULT); // Game Over -> ke result
       localStorage.removeItem('quiz-save-v1');
     }
   };
@@ -155,14 +158,14 @@ function App() {
   // 5. Fungsi utk Restart 
   const handleRestart = () => {
     // 1. Balik ke 'login'
-    setQuizState('login');
+    setQuizState(QUIZ_STATES.LOGIN);
 
     // 2. Reset semua hitungan ke 0
     setScore(0);
     setCorrectCount(0);
     setWrongCount(0);
     setCurrentIndex(0);
-    setTimeLeft(60);
+    setTimeLeft(GAME_CONFIG.TIMER_SECONDS);
     localStorage.removeItem('quiz-save-v1');
   };
 
@@ -175,7 +178,7 @@ function App() {
     // Tahan 1s
     setTimeout(() => {
       setLoading(false);
-      setQuizState('levelSelection');
+      setQuizState(QUIZ_STATES.LEVEL_SELECTION);
     }, 1000);
 
   };
@@ -185,7 +188,7 @@ function App() {
     <div className="app">
       {/* LOGIC PINDAH HALAMAN (CONDITIONAL RENDERING) */}
       {/* QuizState adalah 'login', tampilkan ini: */}
-      {quizState === 'login' && (
+      {quizState === QUIZ_STATES.LOGIN && (
         <Login 
           username={username} 
           setUsername={setUsername} 
@@ -195,7 +198,7 @@ function App() {
       )}
 
       {/* Level Selection  */}
-      {quizState === 'levelSelection' && (
+      {quizState === QUIZ_STATES.LEVEL_SELECTION && (
         <LevelSelection 
           username={username}
           onSelectLevel={handleLevelSelect} 
@@ -205,7 +208,7 @@ function App() {
       )}
 
       {/* QuizState adalah 'playing', tampilkan ini: */}
-      {quizState === 'playing' && questions.length > 0 && (
+      {quizState === QUIZ_STATES.PLAYING && questions.length > 0 && (
         <Quiz 
           username={username}
           timeLeft={timeLeft}
@@ -216,7 +219,7 @@ function App() {
       )}
 
       {/* QuizState adalah 'result', tampilkan ini: */}
-      {quizState === 'result' && (
+      {quizState === QUIZ_STATES.RESULT && (
         <Result 
           username={username}
           score={score}
